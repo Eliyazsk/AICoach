@@ -1,0 +1,22 @@
+# Byte-compiled / optimized / DLL files
+__pycache__/
+*.py[cod]
+*$py.class
+
+# Environments and API Keys
+.env
+.env.*
+!.env.example
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# Next.js and Node
+node_modules/
+.next/
+out/
+build/
+
+# Application uploads
+backend/uploads/
