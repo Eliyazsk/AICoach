@@ -1,4 +1,5 @@
-import fitz  # PyMuPDF
+import io
+from pypdf import PdfReader
 
 class ResumeParser:
     @staticmethod
@@ -8,15 +9,13 @@ class ResumeParser:
         """
         try:
             # Load PDF from bytes
-            doc = fitz.open(stream=file_bytes, filetype="pdf")
+            reader = PdfReader(io.BytesIO(file_bytes))
             extracted_text = []
             
-            for page in doc:
-                text = page.get_text()
-                if text.strip():
+            for page in reader.pages:
+                text = page.extract_text()
+                if text and text.strip():
                     extracted_text.append(text)
-            
-            doc.close()
             
             cleaned_text = "\n".join(extracted_text)
             if not cleaned_text.strip():
